@@ -1,0 +1,1 @@
+the document describes NiFi for ingestion, Pulsar for streaming, Camel for integration, Airflow orchestration, Airavata MFT, Artemis for messaging, EKS for deployment, and ELK for logging. Reference the uploaded guide. Commit.
