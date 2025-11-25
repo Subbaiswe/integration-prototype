@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nifi-simple
+  namespace: nifi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nifi-simple
+  template:
+    metadata:
+      labels:
+        app: nifi-simple
+    spec:
+      containers:
+      - name: nifi
+        image: apache/nifi:1.24.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nifi-simple
+  namespace: nifi
+spec:
+  selector:
+    app: nifi-simple
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP

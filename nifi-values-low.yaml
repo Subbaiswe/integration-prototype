@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: apache/nifi
+  tag: "1.24.0"
+
+resources:
+  requests:
+    cpu: "250m"
+    memory: "512Mi"
+  limits:
+    cpu: "500m"
+    memory: "1Gi"
+
+persistence:
+  enabled: true
+  size: 2Gi
+  # set to your storageClass name if needed; leave empty to use default
+  storageClass: ""
+
+service:
+  type: LoadBalancer
+  port: 8080
